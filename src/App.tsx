@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
 
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import Details from './components/Details';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import ProductList from './components/ProductList';
-import Cart from './components/Cart';
-import ProductForm from './components/ProductForm';
+import Default from './components/Default';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+
+const Cart = lazy(() => import('./components/Cart')); // not part of bundle.js
+const Details = lazy(() => import('./components/Details'));
+const ProductForm = lazy(() => import('./components/ProductForm'));
+
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">CISCO</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/products">Products</Nav.Link>
+            <Nav.Link as={Link} to="/new_product">New Product</Nav.Link>
+            <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
       </div>
       <Routes>
         <Route path="/products" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/details/:id" element={<Details />} />
-        <Route path="new_product" element={<ProductForm />} />
-        <Route path="/" element={<Details />} />
-        <Route path="*" element={<Details />} />
+        <Route path="/cart" element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <Cart />
+          </Suspense>
+        } />
+        <Route path="/details/:id" element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <Details />
+          </Suspense>
+        } />
+        <Route path="/new_product" element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProductForm />
+          </Suspense>
+        } />
+        <Route path="/" element={<ProductList />} />
+        <Route path="*" element={<Default />} />
       </Routes>
     </BrowserRouter>
   );
