@@ -1,5 +1,13 @@
+import { useContext } from "react";
+import { Container } from "react-bootstrap";
+import { ProductContext } from "../context/ProductContext";
+import ProductCart from "./ProductCard";
+
 export default function ProductList() {
-    return <h1>
-        ProductList!!!
-    </h1>
+    let {products} = useContext(ProductContext)
+    return <Container>
+        <div className="row">
+            {products.map(p => <ProductCart product={p} key={p.id} />)}
+        </div>
+    </Container>
 }
