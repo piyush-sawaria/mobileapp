@@ -5,14 +5,17 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductProvider from './context/ProductContext';
 import CartProvider from './context/CartContext';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <ProductProvider>
-    <CartProvider>
-      <App />
-    </CartProvider>
-  </ProductProvider>
+  <BrowserRouter>
+    <ProductProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </ProductProvider>
+  </BrowserRouter>
 );

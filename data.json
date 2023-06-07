@@ -1,5 +1,29 @@
 {
-  "orders": [],
+  "orders": [
+    {
+      "customer": null,
+      "items": [
+        {
+          "id": 1,
+          "name": "Apple iPhone X 64,GB ",
+          "image": "/images/iphone-x-in-hand.jpg",
+          "price": 87049,
+          "quantity": 1,
+          "amount": 87049
+        },
+        {
+          "id": 2,
+          "name": "Nokia 8.1",
+          "image": "/images/nokia8-1.jpg",
+          "price": 26000,
+          "quantity": 2,
+          "amount": 52000
+        }
+      ],
+      "order_date": "2023-06-07T10:09:56.927Z",
+      "id": 1
+    }
+  ],
   "products": [
     {
       "productDescription": "The iPhone X models with Super Retina with 3D Touch",

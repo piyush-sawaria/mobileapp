@@ -15,7 +15,7 @@ const ProductForm = lazy(() => import('./components/ProductForm'));
 
 function App() {
   return (
-    <BrowserRouter>
+    <div>
       <div className="App">
       <Navbar bg="primary" variant="dark">
         <Container>
@@ -50,7 +50,7 @@ function App() {
         <Route path="/" element={<ProductList />} />
         <Route path="*" element={<Default />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 

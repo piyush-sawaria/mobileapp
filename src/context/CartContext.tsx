@@ -1,4 +1,6 @@
+import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import Cart from "../model/Cart";
 import CartReducer from "./CartReducer";
 import { ProductContext } from "./ProductContext";
@@ -27,6 +29,7 @@ type PropsType = {
 export default function CartProvider(props: PropsType) {
     let [state, dispatch] = useReducer(CartReducer, initialState);
     let { products } = useContext(ProductContext);
+    const navigate = useNavigate();
 
     // from UI we pass id of product to add to cart
     function addToCart(id: number) {
@@ -51,7 +54,16 @@ export default function CartProvider(props: PropsType) {
     }
 
     function checkout() {
+        let order:any = {};
+        order.customer = window.sessionStorage.getItem("user");
+        order.items = state.products;
+        order.order_date = new Date();
 
+        axios.post("http://localhost:1234/orders", order).then(response => {
+            console.log("Order Placed!!!");
+            dispatch({ type: 'CLEAR_CART'});
+            navigate("/");
+        });
     }
 
     return <CartContext.Provider value={{
