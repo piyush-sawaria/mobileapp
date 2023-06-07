@@ -5,6 +5,8 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import Default from './components/Default';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = lazy(() => import('./components/Cart')); // not part of bundle.js
 const Details = lazy(() => import('./components/Details'));
@@ -21,7 +23,9 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/products">Products</Nav.Link>
             <Nav.Link as={Link} to="/new_product">New Product</Nav.Link>
-            <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
+            <Nav.Link as={Link} to="/cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
