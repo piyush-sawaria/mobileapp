@@ -69,6 +69,13 @@
       "productPrice": 9850,
       "productQuantity": 9,
       "productSeller": "Motorolla"
+    },
+    {
+      "id": "10",
+      "productName": "iphone12",
+      "productPrice": "68000",
+      "productImageUrl": "/images/iphone-x-in-hand.jpg",
+      "productQuantity": 100
     }
   ]
 }

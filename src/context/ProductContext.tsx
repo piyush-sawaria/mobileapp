@@ -3,10 +3,12 @@ import { createContext, useEffect, useState } from "react"
 import Product from "../model/Product"
 
 type ContextType = {
-    products: Product[]
+    products: Product[],
+    addProduct: (product:Product) => void
 }
 const ProductContext = createContext<ContextType>({
-    products: []
+    products: [],
+    addProduct: (product:Product) => {}
 })
 
 type PropsType = {
@@ -23,8 +25,13 @@ export default function ProductProvider(props: PropsType) {
             })
     }, [])
 
+    function addProduct(product:Product) {
+        //products.push(product);
+        setProducts([...products, product]);
+    }
+
     return <div>
-        <ProductContext.Provider value={{ products }}>
+        <ProductContext.Provider value={{ products, addProduct }}>
             {props.children}
         </ProductContext.Provider>
     </div>
